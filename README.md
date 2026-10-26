@@ -1,0 +1,62 @@
+# valtown-diffs
+
+A Claude Code mod that draws file edits made through the Val Town MCP server
+(`replace_in_file`, `update_file`, `create_file`, and friends) as colored code
+diffs, instead of the raw `file_edit` JSON the server returns. While an edit
+is running, the tool row shows only the val and path, not the full old and new
+strings.
+
+The model still reads the same JSON; only the transcript drawing changes.
+
+## Before
+
+```
+⏺ plugin:valtown:valtown - replace_in_file (MCP)(val: "cdignam/diff-render-test", path: "main.ts", old_string: "console.log(greet(\"  world  \"));", new_string:
+  "for (const name of [\"  world  \", \"Val Town\"]) {\n  console.log(greet(name));\n}")
+  ⎿  {
+       "view": "file_edit",
+       "message": "Successfully replaced 1 occurrence(s) in main.ts",
+       "val": "cdignam/diff-render-test",
+       "branch": "main",
+       "path": "main.ts",
+       "fileType": "script",
+       "hunks": [
+         {
+           "oldStart": 3,
+           "oldLines": 4,
+           "newStart": 3,
+           "newLines": 6,
+           "lines": [
+             {
+               "kind": "ctx",
+               "text": "  return `Hello, ${trimmed}! 👋`;",
+               "oldLine": 3,
+               "newLine": 3
+             },
+     … +40 lines
+```
+
+## After
+
+```
+valtown replace_in_file(cdignam/diff-render-test/main.ts)
+  ⎿ Added 3 lines, removed 1 line
+     3    return `Hello, ${trimmed}! 👋`;
+     4  }
+     5
+     6 -console.log(greet("  world  "));
+     6 +for (const name of ["  world  ", "Val Town"]) {
+     7 +  console.log(greet(name));
+     8 +}
+```
+
+In the terminal the removed and added lines are shaded red and green, as in
+Claude Code's own edit diffs.
+
+## Develop
+
+```sh
+claude --plugin-dir .
+claude plugin validate .
+tsc -p .   # after the first load lays .claude-plugin/types
+```
