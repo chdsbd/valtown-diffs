@@ -1,12 +1,7 @@
 # valtown-diffs
 
-A Claude Code mod that draws file edits made through the Val Town MCP server
-(`replace_in_file`, `update_file`, `create_file`, and friends) as colored code
-diffs, instead of the raw `file_edit` JSON the server returns. While an edit
-is running, the tool row shows only the val and path, not the full old and new
-strings.
-
-The model still reads the same JSON; only the transcript drawing changes.
+A Claude Code mod that draws file edits made through the Val Town MCP server as colored code
+diffs, instead of the raw JSON the server returns.
 
 ## Before
 
@@ -52,6 +47,15 @@ valtown replace_in_file(cdignam/diff-render-test/main.ts)
 
 In the terminal the removed and added lines are shaded red and green, as in
 Claude Code's own edit diffs.
+
+## Install
+
+```
+/plugin marketplace add chdsbd/valtown-diffs
+/plugin install valtown-diffs@valtown-diffs
+```
+
+Restart Claude Code afterwards. It needs the Val Town MCP plugin, whose edit results it redraws.
 
 ## Develop
 

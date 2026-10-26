@@ -1,0 +1,14 @@
+{
+  "name": "valtown-diffs",
+  "owner": {
+    "name": "Christopher Dignam"
+  },
+  "description": "Draw Val Town MCP file edits as code diffs",
+  "plugins": [
+    {
+      "name": "valtown-diffs",
+      "source": "./",
+      "description": "Draw Val Town MCP file edits as code diffs"
+    }
+  ]
+}
