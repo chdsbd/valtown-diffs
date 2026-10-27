@@ -3,12 +3,12 @@
   "owner": {
     "name": "Christopher Dignam"
   },
-  "description": "Draw Val Town MCP file edits as code diffs",
+  "description": "Draw Val Town MCP results like Claude Code's own tools",
   "plugins": [
     {
       "name": "valtown-diffs",
       "source": "./",
-      "description": "Draw Val Town MCP file edits as code diffs"
+      "description": "Draw Val Town MCP results like Claude Code's own tools"
     }
   ]
 }
